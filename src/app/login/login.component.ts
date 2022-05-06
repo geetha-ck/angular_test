@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {
-    var getData = localStorage.getItem('Credentials');
-    //this.onGetPost(getData!);
+    var getData = JSON.parse(localStorage.getItem('Credentials') || {});
+    this.onGetPost(getData);
     console.log(getData);
   }
 
