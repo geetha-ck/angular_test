@@ -1,0 +1,61 @@
+<p>login works!</p>
+<header><h4 class="text-center">MapleLabs</h4></header>
+<footer><h5>CopyRights:maplelabs.com</h5></footer>
+<div class="container">
+  <form class= "form-signin" #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+    <h2 class="text-center">Login</h2>
+     
+    <input
+      type="text"
+      class="form-control"
+      placeholder="User Email"
+      name="name"
+      pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+      ngModel
+      #uname="ngModel"
+      /> 
+    <div 
+      class="err"
+      *ngIf="uname.errors?.['pattern']"> 
+      Email not valid.
+    </div>
+ 
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      name="password"
+      pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$"
+      ngModel
+      #upass="ngModel"
+    /> 
+    <div 
+      class="err"
+      *ngIf="upass.errors?.['pattern']"> 
+      password not valid.
+    </div>
+  <div class="bbtn">   
+  <a>
+  <button
+    type="submit"
+    class="btn_ btn btn-lg btn-primary"
+    [disabled]="!postForm.valid"
+    >
+      sign in
+  </button>
+  </a>
+  
+  <button
+    class="btn btn-primary btn-lg pull-right"
+    (click)="openModel(modalTemplate)"
+    >
+    sign up
+  </button>
+  </div> 
+  
+ </form>
+</div>
+
+<ng-template #modalTemplate>
+  <app-register [dataFromParent]="modalRef"></app-register>
+</ng-template>
